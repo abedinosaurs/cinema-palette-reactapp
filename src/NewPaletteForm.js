@@ -9,68 +9,54 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-
 import { arrayMove } from "react-sortable-hoc";
-
 import ColorPickerForm from "./ColorPickerForm";
-
-const drawerWidth = 400;
+import ColorGenerate from "./ColorGenerateDisplay";
+import SearchBoxForMovie from "./SearchBoxForMovie";
+import axios from "axios";
+import Carousel from "react-material-ui-carousel";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 const styles = (theme) => ({
 	root: {
 		display: "flex",
 	},
-	appBar: {
-		transition: theme.transitions.create(["margin", "width"], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
+	content: {
+		flexGrow: 1,
+		overflow: "hidden",
+		height: "98vh",
+		marginTop: "2vh",
+		width: "100w",
+
+		// padding: theme.spacing.unit * 3,
+		// transition: theme.transitions.create("margin", {
+		// 	easing: theme.transitions.easing.sharp,
+		// 	duration: theme.transitions.duration.leavingScreen,
 	},
-	appBarShift: {
-		width: `calc(100% - ${drawerWidth}px)`,
-		marginLeft: drawerWidth,
-		transition: theme.transitions.create(["margin", "width"], {
-			easing: theme.transitions.easing.easeOut,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
+
+	container: {
+		width: "90%",
+		height: "100%",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "center",
+		alignItems: "center",
+		overflow: "hidden",
 	},
-	menuButton: {
-		marginLeft: 12,
-		marginRight: 20,
+	buttons: {
+		width: "100%",
 	},
-	hide: {
-		display: "none",
+	button: {
+		width: "50%",
 	},
-	drawer: {
-		width: drawerWidth,
-		flexShrink: 0,
-	},
-	drawerPaper: {
-		width: drawerWidth,
-	},
-	drawerHeader: {
+	loader: {
+		height: "98vh",
+		width: "100vw",
+		marginTop: "2vh",
 		display: "flex",
 		alignItems: "center",
-		padding: "0 8px",
-		...theme.mixins.toolbar,
-		justifyContent: "flex-end",
-	},
-	content: {
-		height: "calc(100vh - 64px)",
-		flexGrow: 1,
-		padding: theme.spacing(3),
-		transition: theme.transitions.create("margin", {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		marginLeft: -drawerWidth,
-	},
-	contentShift: {
-		transition: theme.transitions.create("margin", {
-			easing: theme.transitions.easing.easeOut,
-			duration: theme.transitions.duration.enteringScreen,
-		}),
-		marginLeft: 0,
+		justifyContent: "center",
 	},
 });
 
@@ -82,18 +68,61 @@ class NewPaletteForm extends Component {
 		super(props);
 
 		this.state = {
+			isLoading: false,
+			noInput: false,
 			open: false,
-			currentColor: "teal",
-			colors: this.props.palettes[0].colors,
-			newColorName: "",
+			title: "",
+			movieID: "",
+			original_title: "",
+			overview: "",
+			poster: "",
+			genre: [],
+			release: "",
+			backdrop: "",
+			moreImages: [],
+			morePosters: [],
+			imdbID: "",
+			runTime: "",
+			tagline: "",
+			rating: "",
 		};
 		this.addNewColor = this.addNewColor.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.savePalette = this.savePalette.bind(this);
 		this.removeColor = this.removeColor.bind(this);
 		this.clearColors = this.clearColors.bind(this);
-		this.addRandomColor = this.addRandomColor.bind(this);
+		this.handleInput = this.handleInput.bind(this);
+		this.moreScreenShots = this.moreScreenShots.bind(this);
+		// this.moreInfo = this.moreInfo.bind(this);
 	}
+
+	componentDidMount = () => {
+		this.randomMovie();
+	};
+
+	randomMovie = async () => {
+		let randPage = Math.floor(Math.random() * 100);
+		let randIdx = Math.floor(Math.random() * 20);
+		let startingMovie = await axios.get(
+			`https://api.themoviedb.org/3/discover/movie?api_key=d5c94178df3eba5299cbb75cffff17b3&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${randPage}&with_original_language=en`
+		);
+		let info = startingMovie.data.results[randIdx];
+		this.setState({
+			movieID: info.id,
+			title: info.title,
+			original_title: info.original_title,
+			overview: info.overview,
+			poster: info.poster_path,
+			genre: info.genre_ids,
+			release: info.release_date,
+			backdrop: info.backdrop_path,
+			isLoading: true,
+		});
+		setTimeout(() => {
+			this.setState({ isLoading: false });
+		}, 1000);
+		this.moreScreenShots(this.state.movieID);
+	};
 
 	handleDrawerOpen = () => {
 		this.setState({ open: true });
@@ -115,8 +144,20 @@ class NewPaletteForm extends Component {
 
 	savePalette(newPaletteName) {
 		const newPalette = {
-			paletteName: newPaletteName,
-			colors: this.state.colors,
+			title: this.state.title,
+			movieID: this.state.movieID,
+			original_title: this.state.original_title,
+			overview: this.state.overview,
+			poster: this.state.poster,
+			genre: this.state.genre,
+			release: this.state.release,
+			backdrop: this.state.backdrop,
+			moreImages: this.state.moreImages,
+			morePosters: this.state.morePosters,
+			imdbID: this.state.imdbID,
+			runTime: this.state.runTime,
+			tagline: this.state.tagline,
+			rating: this.state.rating,
 			id: newPaletteName.toLowerCase().replace(/ /g, "-"),
 		};
 		this.props.savePalette(newPalette);
@@ -139,28 +180,65 @@ class NewPaletteForm extends Component {
 		this.setState({ colors: [] });
 	}
 
-	addRandomColor() {
-		const allColors = this.props.palettes.map((p) => p.colors).flat();
-		let randIdx = Math.floor(Math.random() * allColors.length);
-		const addRandomColor = allColors[randIdx];
-		this.setState({ colors: [...this.state.colors, addRandomColor] });
+	async moreScreenShots(id) {
+		let screenShots = await axios.get(
+			`https://api.themoviedb.org/3/movie/${id}/images?api_key=d5c94178df3eba5299cbb75cffff17b3`
+		);
+		let info = screenShots.data;
+		this.setState({
+			moreImages: [...info.backdrops],
+			morePosters: [...info.posters],
+		});
 	}
+
+	async componentDidUpdate() {
+		let screenShots = await axios.get(
+			`https://api.themoviedb.org/3/movie/${this.state.movieID}/images?api_key=d5c94178df3eba5299cbb75cffff17b3`
+		);
+		let info = screenShots.data;
+		this.setState({
+			moreImages: [...info.backdrops],
+			morePosters: [...info.posters],
+		});
+	}
+
+	handleInput = (movie) => {
+		{
+			movie &&
+				this.setState({
+					title: movie.title,
+					movieID: movie.id,
+					original_title: movie.original_title,
+					overview: movie.overview,
+					poster: movie.poster_path,
+					genre: movie.genre_ids,
+					release: movie.release_date,
+					backdrop: movie.backdrop_path,
+				});
+		}
+	};
 
 	render() {
 		const { classes, maxColors, palettes } = this.props;
 		const { open, colors } = this.state;
-		const paletteIsFull = maxColors <= colors.length;
 
 		return (
 			<div className={classes.root}>
+				{/*
+			 ==================PALETTE NAV Starts========================== 
+			 */}
 				<PaletteFormNav
 					open={open}
-					classes={classes}
-					palettes={palettes}
-					savePalette={this.savePalette}
-					handleDrawerOpen={this.handleDrawerOpen}
+					title={this.state.title}
+					handleInput={this.handleInput}
+					year={this.state.release}
+					randomMovie={this.randomMovie}
+					handleSubmit={this.savePalette}
 				/>
-				<Drawer
+				{/*
+			 ==================Drawer Starts========================== 
+			 {/* */}
+				{/* <Drawer
 					className={classes.drawer}
 					variant="persistent"
 					anchor="left"
@@ -169,51 +247,76 @@ class NewPaletteForm extends Component {
 						paper: classes.drawerPaper,
 					}}
 				>
-					<div className={classes.drawerHeader}>
+					<div>
 						<IconButton onClick={this.handleDrawerClose}>
 							<ChevronLeftIcon />
 						</IconButton>
 					</div>
 					<Divider />
-					<Typography variant="h4">Design Your Palette</Typography>
-					<div>
-						<Button
-							variant="contained"
-							color="secondary"
-							onClick={this.clearColors}
-						>
-							{"Clear Palette"}
-						</Button>
-						<Button
-							variant="contained"
-							color="primary"
-							disabled={paletteIsFull}
-							onClick={this.addRandomColor}
-							style={{
-								backgroundColor: paletteIsFull && "lightgrey",
-							}}
-						>
-							{"Random Color"}
-						</Button>
+					<div className={classes.container}>
+						<Typography variant="h4" gutterBottom>
+							Design Your Palette
+						</Typography>
+						<div className={classes.buttons}>
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={this.clearColors}
+								className={classes.button}
+							>
+								Clear Palette
+							</Button>
+							<Button
+								variant="contained"
+								className={classes.button}
+								color="primary"
+								onClick={this.addRandomColor}
+							>
+								Random Color
+							</Button>
+						</div>
+						<ColorPickerForm addNewColor={this.addNewColor} colors={colors} />
 					</div>
-					<ColorPickerForm
-						paletteIsFull={paletteIsFull}
-						addNewColor={this.addNewColor}
-						colors={colors}
-					/>
-				</Drawer>
-				<main
-					className={classNames(classes.content, {
-						[classes.contentShift]: open,
-					})}
-				>
-					<div className={classes.drawerHeader} />
-					<DraggableColorList
-						colors={this.state.colors}
-						removeColor={this.removeColor}
-						axis="xy"
-						onSortEnd={this.onSortEnd}
-					/>
+				</Drawer> */}
+				*/}
+				{/*
+			 ================= MAIN CONTENT STARTS ========================== 
+			 */}
+				<main className={classNames(classes.content)}>
+					{this.state.isLoading === true ? (
+						<div className={classes.loader}>
+							<Loader
+								type="Oval"
+								color="#c4cace"
+								height={300}
+								width={300}
+								timeout={3000} //3 secs
+							/>
+						</div>
+					) : (
+						<div className={classes.paletteContainer}>
+							{this.state.moreImages === [] ? (
+								<h1 style={{ margin: "15% 30%" }}>
+									Something has gone wrong,
+									<br /> please search for a new movie above
+								</h1>
+							) : (
+								<Carousel
+									autoPlay={false}
+									animation="fade"
+									indicators={false}
+									navButtonsAlwaysVisible={true}
+								>
+									{this.state.moreImages.map((item) => (
+										<ColorGenerate
+											image={item.file_path}
+											title={this.state.title}
+										/>
+									))}
+								</Carousel>
+							)}
+						</div>
+					)}
 				</main>
 			</div>
 		);

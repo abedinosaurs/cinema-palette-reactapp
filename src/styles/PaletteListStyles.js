@@ -1,13 +1,12 @@
 export default {
 	root: {
-		backgroundColor: "blue",
-		height: "100vh",
+		backgroundColor: "black",
 		display: "flex",
 		alignItems: "flex-start",
 		justifyContent: "center",
 	},
 	container: {
-		width: "50%",
+		width: "90%",
 		display: "flex",
 		alignItems: "flex-start",
 		flexDirection: "column",
@@ -24,10 +23,11 @@ export default {
 		},
 	},
 	palettes: {
+		height: "90vh",
 		boxSizing: "border-box",
-		width: "100%",
-		display: "grid",
-		gridTemplateColumns: "repeat(3, 30%)",
-		gridGap: "5%",
+		display: "flex",
+		flexWrap: "wrap",
+		width: "90%",
+		justifyContent: "space-around",
 	},
 };
