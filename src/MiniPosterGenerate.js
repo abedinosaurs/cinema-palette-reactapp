@@ -1,7 +1,6 @@
 import React from "react";
 import { ColorExtractor } from "react-color-extractor";
 import { withStyles } from "@material-ui/core/styles";
-import ReactHoverObserver from "react-hover-observer";
 
 const styles = {
 	root: {},
@@ -60,9 +59,6 @@ class ColorGenerate extends React.Component {
 			);
 		});
 	}
-	componentDidMount() {
-		console.log(this.props);
-	}
 
 	getColors(colors) {
 		this.setState((state) => ({ colors: [...colors] }));
@@ -76,7 +72,7 @@ class ColorGenerate extends React.Component {
 					<ColorExtractor getColors={this.getColors} maxColors={256}>
 						<img
 							src={`https://image.tmdb.org/t/p/w780${this.props.image}`}
-							alt={`Image from the movie ${this.props.title}`}
+							alt={`from the movie ${this.props.title}`}
 						/>
 					</ColorExtractor>
 					<div className={this.props.classes.swatchContainer}>

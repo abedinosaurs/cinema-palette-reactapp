@@ -4,8 +4,6 @@ import MiniPalette from "./MiniPalette";
 import { withStyles } from "@material-ui/styles";
 import Carousel1 from "react-material-ui-carousel";
 import FrontPageCarosuel from "./FrontPageCarosuel";
-import Icon from "@material-ui/core/Icon";
-import GroupWorkIcon from "@material-ui/icons/GroupWork";
 import Carousel2 from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 // import styles from "./styles/PaletteListStyles";
@@ -67,7 +65,6 @@ const styles = {
 	Carousel2: {
 		position: "absolute",
 		left: 0,
-		width: "calc(100vw-10px)",
 		height: "55vh",
 		width: "100%",
 	},

@@ -70,7 +70,7 @@ class ColorGenerate extends React.Component {
 					<ColorExtractor getColors={this.getColors} maxColors={256}>
 						<img
 							src={`https://image.tmdb.org/t/p/original${this.props.image}`}
-							alt={`Image from the movie ${this.props.title}`}
+							alt={`from the movie ${this.props.title}`}
 						/>
 					</ColorExtractor>
 					<div className={this.props.classes.swatchContainer}>

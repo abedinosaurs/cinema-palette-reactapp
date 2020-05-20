@@ -34,12 +34,10 @@ class MiniPalette extends Component {
 	}
 
 	render() {
-		const hoveredClasses = this.state.isHovered ? "hoveredImage" : "";
 		return (
 			<div
 				onMouseEnter={this.handleHover}
 				onMouseLeave={this.handleHover}
-				className={hoveredClasses}
 				className={this.props.root}
 				onClick={this.props.handleClick}
 			>

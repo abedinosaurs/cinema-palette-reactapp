@@ -1,18 +1,8 @@
 import React, { Component } from "react";
 import PaletteFormNav from "./PaletteFormNav";
-import DraggableColorList from "./DraggableColorList";
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Button from "@material-ui/core/Button";
-import { arrayMove } from "react-sortable-hoc";
-import ColorPickerForm from "./ColorPickerForm";
 import ColorGenerate from "./ColorGenerateDisplay";
-import SearchBoxForMovie from "./SearchBoxForMovie";
 import axios from "axios";
 import Carousel from "react-material-ui-carousel";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -86,14 +76,10 @@ class NewPaletteForm extends Component {
 			tagline: "",
 			rating: "",
 		};
-		this.addNewColor = this.addNewColor.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.savePalette = this.savePalette.bind(this);
-		this.removeColor = this.removeColor.bind(this);
-		this.clearColors = this.clearColors.bind(this);
 		this.handleInput = this.handleInput.bind(this);
 		this.moreScreenShots = this.moreScreenShots.bind(this);
-		// this.moreInfo = this.moreInfo.bind(this);
 	}
 
 	componentDidMount = () => {
@@ -124,20 +110,6 @@ class NewPaletteForm extends Component {
 		this.moreScreenShots(this.state.movieID);
 	};
 
-	handleDrawerOpen = () => {
-		this.setState({ open: true });
-	};
-
-	handleDrawerClose = () => {
-		this.setState({ open: false });
-	};
-
-	addNewColor(newColor) {
-		this.setState({
-			colors: [...this.state.colors, newColor],
-		});
-	}
-
 	handleChange(evt) {
 		this.setState({ [evt.target.name]: evt.target.value });
 	}
@@ -164,22 +136,6 @@ class NewPaletteForm extends Component {
 		this.props.history.push("/");
 	}
 
-	removeColor(colorName) {
-		this.setState({
-			colors: this.state.colors.filter((color) => color.name !== colorName),
-		});
-	}
-
-	onSortEnd = ({ oldIndex, newIndex }) => {
-		this.setState(({ colors }) => ({
-			colors: arrayMove(colors, oldIndex, newIndex),
-		}));
-	};
-
-	clearColors() {
-		this.setState({ colors: [] });
-	}
-
 	async moreScreenShots(id) {
 		let screenShots = await axios.get(
 			`https://api.themoviedb.org/3/movie/${id}/images?api_key=d5c94178df3eba5299cbb75cffff17b3`
@@ -203,24 +159,20 @@ class NewPaletteForm extends Component {
 	}
 
 	handleInput = (movie) => {
-		{
-			movie &&
-				this.setState({
-					title: movie.title,
-					movieID: movie.id,
-					original_title: movie.original_title,
-					overview: movie.overview,
-					poster: movie.poster_path,
-					genre: movie.genre_ids,
-					release: movie.release_date,
-					backdrop: movie.backdrop_path,
-				});
-		}
+		this.setState({
+			title: movie.title,
+			movieID: movie.id,
+			original_title: movie.original_title,
+			overview: movie.overview,
+			poster: movie.poster_path,
+			genre: movie.genre_ids,
+			release: movie.release_date,
+			backdrop: movie.backdrop_path,
+		});
 	};
 
 	render() {
-		const { classes, maxColors, palettes } = this.props;
-		const { open, colors } = this.state;
+		const { classes } = this.props;
 
 		return (
 			<div className={classes.root}>
@@ -228,60 +180,15 @@ class NewPaletteForm extends Component {
 			 ==================PALETTE NAV Starts========================== 
 			 */}
 				<PaletteFormNav
-					open={open}
 					title={this.state.title}
 					handleInput={this.handleInput}
 					year={this.state.release}
 					randomMovie={this.randomMovie}
 					handleSubmit={this.savePalette}
 				/>
-				{/*
-			 ==================Drawer Starts========================== 
-			 {/* */}
-				{/* <Drawer
-					className={classes.drawer}
-					variant="persistent"
-					anchor="left"
-					open={open}
-					classes={{
-						paper: classes.drawerPaper,
-					}}
-				>
-					<div>
-						<IconButton onClick={this.handleDrawerClose}>
-							<ChevronLeftIcon />
-						</IconButton>
-					</div>
-					<Divider />
-					<div className={classes.container}>
-						<Typography variant="h4" gutterBottom>
-							Design Your Palette
-						</Typography>
-						<div className={classes.buttons}>
-							<Button
-								variant="contained"
-								color="secondary"
-								onClick={this.clearColors}
-								className={classes.button}
-							>
-								Clear Palette
-							</Button>
-							<Button
-								variant="contained"
-								className={classes.button}
-								color="primary"
-								onClick={this.addRandomColor}
-							>
-								Random Color
-							</Button>
-						</div>
-						<ColorPickerForm addNewColor={this.addNewColor} colors={colors} />
-					</div>
-				</Drawer> */}
-				*/}
-				{/*
+				{/* 				
 			 ================= MAIN CONTENT STARTS ========================== 
-			 */}
+			  */}
 				<main className={classNames(classes.content)}>
 					{this.state.isLoading === true ? (
 						<div className={classes.loader}>
