@@ -16,7 +16,7 @@ const styles = (theme) => ({
 		flexGrow: 1,
 		overflow: "hidden",
 		height: "98vh",
-		marginTop: "2vh",
+		marginTop: "4vh",
 		width: "100w",
 
 		// padding: theme.spacing.unit * 3,
@@ -25,15 +25,6 @@ const styles = (theme) => ({
 		// 	duration: theme.transitions.duration.leavingScreen,
 	},
 
-	container: {
-		width: "90%",
-		height: "100%",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-		overflow: "hidden",
-	},
 	buttons: {
 		width: "100%",
 	},
@@ -47,6 +38,12 @@ const styles = (theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
+	},
+	hideLoader: {
+		display: "none !important",
+	},
+	displayLoader: {
+		display: "none !important",
 	},
 });
 
@@ -71,10 +68,8 @@ class NewPaletteForm extends Component {
 			backdrop: "",
 			moreImages: [],
 			morePosters: [],
-			imdbID: "",
-			runTime: "",
-			tagline: "",
 			rating: "",
+			colors: [],
 		};
 		this.handleChange = this.handleChange.bind(this);
 		this.savePalette = this.savePalette.bind(this);
@@ -106,7 +101,7 @@ class NewPaletteForm extends Component {
 		});
 		setTimeout(() => {
 			this.setState({ isLoading: false });
-		}, 1000);
+		}, 1200);
 		this.moreScreenShots(this.state.movieID);
 	};
 
@@ -116,6 +111,7 @@ class NewPaletteForm extends Component {
 
 	savePalette(newPaletteName) {
 		const newPalette = {
+			colors: [],
 			title: this.state.title,
 			movieID: this.state.movieID,
 			original_title: this.state.original_title,
@@ -126,10 +122,6 @@ class NewPaletteForm extends Component {
 			backdrop: this.state.backdrop,
 			moreImages: this.state.moreImages,
 			morePosters: this.state.morePosters,
-			imdbID: this.state.imdbID,
-			runTime: this.state.runTime,
-			tagline: this.state.tagline,
-			rating: this.state.rating,
 			id: newPaletteName.toLowerCase().replace(/ /g, "-"),
 		};
 		this.props.savePalette(newPalette);
@@ -141,10 +133,14 @@ class NewPaletteForm extends Component {
 			`https://api.themoviedb.org/3/movie/${id}/images?api_key=d5c94178df3eba5299cbb75cffff17b3`
 		);
 		let info = screenShots.data;
-		this.setState({
-			moreImages: [...info.backdrops],
-			morePosters: [...info.posters],
-		});
+		if (info.backdrops.length > 1) {
+			this.setState({
+				moreImages: [...info.backdrops],
+				morePosters: [...info.posters],
+			});
+		} else {
+			this.randomMovie();
+		}
 	}
 
 	async componentDidUpdate() {
@@ -173,7 +169,14 @@ class NewPaletteForm extends Component {
 
 	render() {
 		const { classes } = this.props;
-
+		let loadingClass = classes.loader;
+		if (!this.state.isLoading) {
+			loadingClass = classes.hideLoader;
+		}
+		let displayLoad;
+		if (this.state.isLoading) {
+			displayLoad = classes.displayLoader;
+		}
 		return (
 			<div className={classes.root}>
 				{/*
@@ -186,44 +189,43 @@ class NewPaletteForm extends Component {
 					randomMovie={this.randomMovie}
 					handleSubmit={this.savePalette}
 				/>
+
 				{/* 				
 			 ================= MAIN CONTENT STARTS ========================== 
 			  */}
 				<main className={classNames(classes.content)}>
-					{this.state.isLoading === true ? (
-						<div className={classes.loader}>
-							<Loader
-								type="Oval"
-								color="#c4cace"
-								height={300}
-								width={300}
-								timeout={3000} //3 secs
-							/>
-						</div>
-					) : (
-						<div className={classes.paletteContainer}>
-							{this.state.moreImages === [] ? (
-								<h1 style={{ margin: "15% 30%" }}>
-									Something has gone wrong,
-									<br /> please search for a new movie above
-								</h1>
-							) : (
-								<Carousel
-									autoPlay={false}
-									animation="fade"
-									indicators={false}
-									navButtonsAlwaysVisible={true}
-								>
-									{this.state.moreImages.map((item) => (
-										<ColorGenerate
-											image={item.file_path}
-											title={this.state.title}
-										/>
-									))}
-								</Carousel>
-							)}
-						</div>
-					)}
+					<div className={loadingClass}>
+						<Loader
+							type="Oval"
+							color="#c4cace"
+							height={300}
+							width={300}
+							timeout={3000} //3 secs
+						/>
+					</div>
+
+					<div className={displayLoad}>
+						{this.state.moreImages === [] ? (
+							<h1 style={{ margin: "15% 30%" }}>
+								Something has gone wrong,
+								<br /> please search for a new movie above
+							</h1>
+						) : (
+							<Carousel
+								autoPlay={false}
+								animation="fade"
+								indicators={false}
+								navButtonsAlwaysVisible={true}
+							>
+								{this.state.moreImages.map((item) => (
+									<ColorGenerate
+										image={item.file_path}
+										title={this.state.title}
+									/>
+								))}
+							</Carousel>
+						)}
+					</div>
 				</main>
 			</div>
 		);

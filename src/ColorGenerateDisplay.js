@@ -59,7 +59,6 @@ class ColorGenerate extends React.Component {
 	getColors(colors) {
 		this.setState((state) => ({
 			colors: [...colors],
-			backgroundImage: `https://image.tmdb.org/t/p/w780${this.props.backdrop}`,
 		}));
 	}
 

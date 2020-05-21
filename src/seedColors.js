@@ -4,6 +4,7 @@ export default [
 		title: "Dallas Buyers Club",
 		poster: "/7Fdh7gUq3plvQqxRbNYhWvDABXA.jpg",
 		backdrop: "/jHwASc8hBtdfRGUmxS6pq5mHiyN.jpg",
+		id: "dallas-buyers-club",
 	},
 	{
 		movieID: 62,

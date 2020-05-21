@@ -31,10 +31,9 @@ const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
 function generatePalette(starterPalette) {
 	let newPalette = {
-		paletteName: starterPalette.paletteName,
+		paletteName: starterPalette.title,
 		id: starterPalette.id,
-		emoji: starterPalette.emoji,
-		colors: {},
+		colors: [],
 	};
 	for (let level of levels) {
 		newPalette.colors[level] = [];
@@ -43,8 +42,8 @@ function generatePalette(starterPalette) {
 		let scale = getScale(color.color, 10).reverse();
 		for (let i in scale) {
 			newPalette.colors[levels[i]].push({
-				name: `${color.name} ${levels[i]}`,
-				id: color.name.toLowerCase().replace(/ /g, "-"),
+				name: `${[i]} ${levels[i]}`,
+				// id: color.name.toLowerCase().replace(/ /g, "-"),
 				hex: scale[i],
 				rgb: chroma(scale[i]).css(),
 				rgba: chroma(scale[i])
@@ -54,7 +53,7 @@ function generatePalette(starterPalette) {
 			});
 		}
 	}
-	return newPalette;
+	console.log(newPalette);
 }
 function getRange(hexColor) {
 	const end = "#fff";

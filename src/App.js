@@ -66,9 +66,11 @@ class App extends Component {
 					path="/palette/:id"
 					render={(routeProps) => (
 						<Palette
-							palette={generatePalette(
-								this.findPalette(routeProps.match.params.id)
-							)}
+							palette={this.findPalette(routeProps.match.params.id)}
+							{...routeProps}
+							// palette={generatePalette(
+							// 	this.findPalette(routeProps.match.params.id)
+							// )}
 						/>
 					)}
 				/>

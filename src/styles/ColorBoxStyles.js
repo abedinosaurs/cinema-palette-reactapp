@@ -2,7 +2,8 @@ import chroma from "chroma-js";
 export default {
 	ColorBox: {
 		width: "20%",
-		height: (props) => (props.showingFullPalette ? "25%" : "50%"),
+		// height: (props) => (props.showingFullPalette ? "25%" : "50%"),
+		height: 100,
 		margin: "0 auto",
 		display: "inline-block",
 		position: "relative",
@@ -15,14 +16,14 @@ export default {
 		},
 	},
 	copyText: {
-		color: (props) =>
-			chroma(props.background).luminance() >= 0.65
-				? "rgba(0, 0, 0, 0.5)"
-				: "white",
+		// color: (props) =>
+		// 	chroma(props.background).luminance() >= 0.65
+		// 		? "rgba(0, 0, 0, 0.5)"
+		// 		: "white",
 	},
 	colorName: {
-		color: (props) =>
-			0.06 >= chroma(props.background).luminance() ? "white" : "black",
+		// color: (props) =>
+		// 	0.06 >= chroma(props.background).luminance() ? "white" : "black",
 	},
 	seeMore: {
 		background: "rgba(255, 255, 255, 0.4)",
@@ -34,14 +35,14 @@ export default {
 		height: "30px",
 		textAlign: "center",
 		lineHeight: "30px",
-		color: (props) =>
-			chroma(props.background).luminance() >= 0.65
-				? "rgba(0, 0, 0, 0.5)"
-				: "white",
+		// color: (props) =>
+		// 	chroma(props.background).luminance() >= 0.65
+		// 		? "rgba(0, 0, 0, 0.5)"
+		// 		: "white",
 	},
 	copyButton: {
-		color: (props) =>
-			chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.5)" : "white",
+		// color: (props) =>
+		// 	chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.5)" : "white",
 		width: "100px",
 		height: "30px",
 		position: "absolute",
