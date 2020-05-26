@@ -7,8 +7,6 @@ import FrontPageCarosuel from "./FrontPageCarosuel";
 import Carousel2 from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import Button from "@material-ui/core/Button";
-// import styles from "./styles/PaletteListStyles";
-import bg from "./bg.svg";
 
 const styles = {
 	root: {

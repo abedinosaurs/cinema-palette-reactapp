@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
-import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
 import Carousel from "react-material-ui-carousel";
 import axios from "axios";
@@ -9,7 +8,6 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 // import styles from "./styles/PaletteStyles";
 import ColorExtractorFull from "./ColorExtractorForMain";
-import { generatePalette } from "./ColorHelpers";
 
 const styles = {
 	Palette: {
@@ -110,7 +108,7 @@ class Palette extends Component {
 		this.setState({ format: val });
 	}
 	getColors(colors) {
-		this.setState((state) => ({
+		this.setState(() => ({
 			colors: [...colors],
 		}));
 	}
