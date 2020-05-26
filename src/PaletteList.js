@@ -8,112 +8,7 @@ import Carousel2 from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import Button from "@material-ui/core/Button";
 import Footer from "./Footer";
-const styles = {
-	root: {
-		backgroundColor: "#fffff2",
-		// position: "relative",
-		backgroundSize: "cover",
-		display: "flex",
-		alignItems: "flex-start",
-		justifyContent: "center",
-		fontFamily: "Roboto,Helvetica, Arial, sans-serif",
-	},
-	container: {
-		width: "100%",
-		display: "flex",
-		alignItems: "space-between",
-		flexDirection: "column",
-		flexWrap: "wrap",
-	},
-	// nav: {
-	// 	zIndex: 20,
-	// 	position: "relative",
-	// 	top: 0,
-	// 	display: "flex",
-	// 	width: "100%",
-	// 	justifyContent: "space-between",
-	// 	color: "white",
-	// 	alignItems: "center",
-	// 	"& a": {
-	// 		postion: "relative",
-	// 		top: 10,
-	// 		color: "white",
-	// 		fontWeight: "600",
-	// 	},
-	// 	"& svg": {
-	// 		position: "relative",
-	// 		paddingLeft: "0.5rem",
-	// 		top: 12,
-
-	// 		fill: "white",
-	// 		height: "3rem",
-	// 		margin: "none",
-	// 	},
-	// },
-	palettes: {
-		postion: "absolute",
-		zIndex: 1,
-		marginTop: "90vh",
-		height: "100%",
-		boxSizing: "border-box",
-		display: "flex",
-		flexWrap: "wrap",
-		width: "90%",
-		justifyContent: "flex-start",
-		// paddingBottom: "50vh",
-		"& h3": {
-			marginBottom: 0,
-			color: "black",
-			alignItems: "flex-start",
-			textDecoration: "underline",
-		},
-	},
-	titlePageHeader: {
-		zIndex: 1,
-		position: "absolute",
-		top: 0,
-		left: 0,
-		width: "100%",
-		height: "85vh",
-		overflow: "hidden",
-	},
-	Carousel2: {
-		zIndex: 1,
-		position: "absolute",
-		left: 0,
-		height: "55vh",
-		width: "100%",
-		cursor: "pointer",
-	},
-	yourpalletes: {
-		position: "relative",
-		zIndex: 1,
-		height: "100%",
-		boxSizing: "border-box",
-		display: "flex",
-		flexWrap: "wrap",
-		width: "100%",
-		justifyContent: "flex-start",
-		paddingBottom: 200,
-	},
-
-	yourText: {
-		display: "flex",
-		justifyContent: "space-between",
-		alignItems: "center",
-		width: "100%",
-
-		"& h3": {
-			// marginBottom: 0,
-			color: "black",
-			textDecoration: "underline",
-		},
-		"& a": {
-			padding: 0,
-			margin: 0,
-		},
-	},
-};
+import styles from "./styles/PaletteListStyles";
 
 class PaletteList extends Component {
 	constructor(props) {
@@ -148,21 +43,13 @@ class PaletteList extends Component {
 		return (
 			<div className={classes.root}>
 				<div className={classes.container}>
-					<nav className={classes.nav}>
-						{/* <h1>
-							CinemaPalettes
-							{filmReel}
-						</h1>
-						<Link to="/palette/new">Find your Favourite Movie!</Link> */}
-					</nav>
 					<div className={classes.titlePageHeader}>
 						<Carousel1
 							autoPlay={true}
 							interval={3000}
 							animation="fade"
 							timeout={600}
-							// indicators={true}
-							// navButtonsAlwaysVisible={true}
+							indicators={false}
 						>
 							{titlePalettes.map((p) => (
 								<FrontPageCarosuel
@@ -248,7 +135,6 @@ class PaletteList extends Component {
 									style={{
 										height: "100%",
 										width: "100%",
-
 										textAlign: "center",
 									}}
 								>

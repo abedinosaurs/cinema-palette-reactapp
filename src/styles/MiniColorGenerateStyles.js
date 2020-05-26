@@ -1,0 +1,43 @@
+export default {
+	root: {},
+	movieImage: {
+		background: "none",
+		width: "450px",
+		height: "90%",
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		flexWrap: "wrap",
+		boxShadow: "-10px 10px 7px 2px rgba(0,0,0,0.7)",
+		marginBottom: 15,
+		"& img": {
+			width: "100%",
+			position: "relative",
+			zIndex: -1,
+			display: "block",
+			borderRadius: "10px 10px 0px 0px",
+		},
+		"& h2": {
+			color: "white",
+			position: "absolute",
+			top: "35%",
+			left: "50%",
+			transform: "translate(-50%, -50%)",
+			fontFamily: "Notable, sans-serif",
+			textAlign: "center",
+			textShadow: "-3px 3px 3px #000000",
+			width: "30%",
+		},
+	},
+	swatchContainer: {
+		display: "flex",
+		justifyContent: "space-between",
+		width: "100%",
+		height: 50,
+	},
+	paletteSwatches: {
+		height: "100%",
+		width: "calc(100%/6)",
+		justifyContent: "center",
+	},
+};

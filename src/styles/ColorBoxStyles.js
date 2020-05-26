@@ -1,7 +1,6 @@
 export default {
 	ColorBox: {
 		width: "calc(98%/6)",
-		// height: (props) => (props.showingFullPalette ? "25%" : "50%"),
 		height: 100,
 		margin: "0 auto",
 		display: "inline-block",
@@ -14,34 +13,7 @@ export default {
 			transition: "0.5s",
 		},
 	},
-	copyText: {
-		// color: (props) =>
-		// 	chroma(props.background).luminance() >= 0.65
-		// 		? "rgba(0, 0, 0, 0.5)"
-		// 		: "white",
-	},
-	colorName: {
-		// color: (props) =>
-		// 	0.06 >= chroma(props.background).luminance() ? "white" : "black",
-	},
-	seeMore: {
-		background: "rgba(255, 255, 255, 0.4)",
-		position: "absolute",
-		border: "none",
-		right: "0",
-		bottom: "0",
-		width: "60px",
-		height: "30px",
-		textAlign: "center",
-		lineHeight: "30px",
-		// color: (props) =>
-		// 	chroma(props.background).luminance() >= 0.65
-		// 		? "rgba(0, 0, 0, 0.5)"
-		// 		: "white",
-	},
 	copyButton: {
-		// color: (props) =>
-		// 	chroma(props.background).luminance() >= 0.7 ? "rgba(0,0,0,0.5)" : "white",
 		width: "100px",
 		height: "30px",
 		position: "absolute",

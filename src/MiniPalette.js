@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import MiniColorGenerate from "./MiniPosterGenerate";
+import MiniColorGenerate from "./MiniColorGenerate";
 import { withStyles } from "@material-ui/styles";
-// import styles from "./styles/MiniPaletteStyles";
 
 const styles = {
 	root: {

@@ -7,45 +7,7 @@ import axios from "axios";
 import Carousel from "react-material-ui-carousel";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
-
-const styles = (theme) => ({
-	root: {
-		display: "flex",
-	},
-	content: {
-		flexGrow: 1,
-		overflow: "hidden",
-		height: "98vh",
-		marginTop: "4vh",
-		width: "100w",
-
-		// padding: theme.spacing.unit * 3,
-		// transition: theme.transitions.create("margin", {
-		// 	easing: theme.transitions.easing.sharp,
-		// 	duration: theme.transitions.duration.leavingScreen,
-	},
-
-	buttons: {
-		width: "100%",
-	},
-	button: {
-		width: "50%",
-	},
-	loader: {
-		height: "98vh",
-		width: "100vw",
-		marginTop: "2vh",
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-	hideLoader: {
-		display: "none !important",
-	},
-	displayLoader: {
-		display: "none !important",
-	},
-});
+import styles from "./styles/NewPaletteFormStyles";
 
 class NewPaletteForm extends Component {
 	static defaultProps = {
@@ -57,7 +19,6 @@ class NewPaletteForm extends Component {
 		this.state = {
 			isLoading: false,
 			noInput: false,
-			open: false,
 			title: "",
 			movieID: "",
 			original_title: "",
@@ -236,4 +197,4 @@ class NewPaletteForm extends Component {
 	}
 }
 
-export default withStyles(styles, { withTheme: true })(NewPaletteForm);
+export default withStyles(styles)(NewPaletteForm);

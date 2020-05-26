@@ -2,84 +2,9 @@ import React, { Component } from "react";
 import "rc-slider/assets/index.css";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
-// import styles from "./styles/NavbarStyles";
-const styles = {
-	Navbar: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		height: "35px",
-		backgroundColor: "#eceff1",
-		fontFamily: "Roboto,Helvetica, Arial, sans-serif",
-	},
-	logo: {
-		fontSize: "21px",
-		backgroundColor: "#eceff1",
-		height: "95%",
-		fontFamily: "Oswald, sans-serif",
-		letterSpacing: "2px",
-		"& a": {
-			position: "absolute",
-			top: 2,
-			left: 15,
-			textDecoration: "none",
-			color: "black",
-		},
-		"& svg": {
-			position: "fixed",
-			paddingLeft: ".2rem",
-			height: "2.3rem",
-			marginBottom: 2,
-		},
-	},
-	slider: {
-		width: "340px",
-		margin: "0 10px",
-		display: "inline-block",
-		"& .rc-slider-track": {
-			backgroundColor: "transparent",
-		},
-		"& .rc-slider-rail": {
-			height: "8px",
-		},
-		"& .rc-slider-handle, .rc-slider-handle:active, .rc-slider-handle:focus,.rc-slider-handle:hover": {
-			backgroundColor: "green",
-			outline: "none",
-			border: "2px solid green",
-			boxShadow: "none",
-			width: "13px",
-			height: "13px",
-			marginLeft: "-7px",
-			marginTop: "-3px",
-		},
-	},
-	selectContainer: {
-		marginLeft: "auto",
-		marginRight: "1rem",
-	},
-};
+import styles from "./styles/NavbarStyles";
 
 class Navbar extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			format: "hex",
-			open: false,
-		};
-		this.handleFormatChange = this.handleFormatChange.bind(this);
-		this.closeSnackbar = this.closeSnackbar.bind(this);
-	}
-	handleFormatChange(e) {
-		this.setState({ format: e.target.value, open: true });
-		this.props.handleChange(e.target.value);
-	}
-	closeSnackbar() {
-		this.setState({ open: false });
-	}
-	componentDidMount() {
-		console.log(this.props);
-	}
 	render() {
 		const filmReel = (
 			<svg
@@ -96,49 +21,6 @@ class Navbar extends Component {
 				<div className={classes.logo}>
 					<Link to="/">CinemaPalettes {filmReel}</Link>
 				</div>
-				{/* {this.props.showSlider && (
-					<div>
-						<span>Level:{level}</span>
-						<div className={classes.slider}>
-							<Slider
-								step={100}
-								defaultValue={level}
-								min={100}
-								max={900}
-								onAfterChange={changeLevel}
-							/>
-						</div>
-					</div>
-				)}
-				<div className={classes.selectContainer}>
-					<Select value={format} onChange={this.handleFormatChange}>
-						<MenuItem value="hex">HEX - #ffffff</MenuItem>
-						<MenuItem value="rgb">RGB - rgb(255,255,255)</MenuItem>
-						<MenuItem value="rgba">RGBA - rgb(255,255,255,1.0)</MenuItem>
-					</Select>
-				</div>
-				<Snackbar
-					anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-					open={this.state.open}
-					autoHideDuration={3000}
-					message={
-						<span id="message-id">
-							Format Changed to {format.toUpperCase()}
-						</span>
-					}
-					ContentProps={{ "aria-describedby": "message-id" }}
-					onClose={this.closeSnackbar}
-					action={[
-						<IconButton
-							onClick={this.closeSnackbar}
-							color="inherit"
-							key="close"
-							aria-label="close"
-						>
-							<CloseIcon />
-						</IconButton>,
-					]}
-				/> */}
 				<h1>
 					{this.props.title} {` (${this.props.year.substring(0, 4)})`}
 				</h1>

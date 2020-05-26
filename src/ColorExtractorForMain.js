@@ -2,30 +2,7 @@ import React from "react";
 import { ColorExtractor } from "./react-color-extractor";
 import { withStyles } from "@material-ui/styles";
 import { Swatches, renderSwatches } from "./utils";
-
-const styles = {
-	container: {
-		// postion: "absolute",
-		// top: 30,
-		display: "flex",
-		// justifyContent: "center",
-		// flexWrap: "wrap",
-		alignItems: "center",
-		flexDirection: "column",
-		height: "100vh",
-		width: "100%",
-	},
-	image: {
-		// height: "80%",
-		width: "70%",
-		marginBottom: 4,
-	},
-	swatches: {
-		display: "flex",
-		width: "100%",
-		wrap: "none",
-	},
-};
+import styles from "./styles/ColorExtractorForMainStyles";
 class ColorExtractorFull extends React.Component {
 	state = { colors: [] };
 

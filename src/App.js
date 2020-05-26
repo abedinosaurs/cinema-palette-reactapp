@@ -2,9 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Palette from "./Palette";
 import PaletteList from "./PaletteList";
-import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
-import { generatePalette } from "./ColorHelpers";
 import { Component } from "react";
 
 class App extends Component {
@@ -130,18 +128,7 @@ class App extends Component {
 						/>
 					)}
 				/>
-				<Route
-					exact
-					path="/palette/:paletteId/:colorId"
-					render={(routeProps) => (
-						<SingleColorPalette
-							colorId={routeProps.match.params.colorId}
-							palette={generatePalette(
-								this.findPalette(routeProps.match.params.paletteId)
-							)}
-						/>
-					)}
-				/>
+
 				<Route
 					exact
 					path="/"
@@ -160,9 +147,6 @@ class App extends Component {
 						<Palette
 							palette={this.findPalette(routeProps.match.params.id)}
 							{...routeProps}
-							// palette={generatePalette(
-							// 	this.findPalette(routeProps.match.params.id)
-							// )}
 						/>
 					)}
 				/>
