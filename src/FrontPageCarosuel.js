@@ -68,7 +68,7 @@ const styles = {
 	cinemaPalette: {
 		position: "absolute",
 		color: "white",
-		top: 390,
+		top: 300,
 		left: 20,
 		zIndex: 20,
 		textShadow: "-3px 3px 3px #000000",
