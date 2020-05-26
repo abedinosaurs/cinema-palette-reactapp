@@ -11,9 +11,7 @@ import Button from "@material-ui/core/Button";
 const styles = {
 	root: {
 		backgroundColor: "#fffff2",
-		// backgroundImage: `url(${bg})`,
-		position: "relative",
-		// backgroundAttachment: "fixed",
+		// position: "relative",
 		backgroundSize: "cover",
 		display: "flex",
 		alignItems: "flex-start",
@@ -22,38 +20,38 @@ const styles = {
 	container: {
 		width: "90%",
 		display: "flex",
-		alignItems: "flex-start",
+		alignItems: "space-between",
 		flexDirection: "column",
 		flexWrap: "wrap",
 	},
-	nav: {
-		zIndex: 20,
-		position: "relative",
-		top: 0,
-		display: "flex",
-		width: "100%",
-		justifyContent: "space-between",
-		color: "white",
-		alignItems: "center",
-		"& a": {
-			postion: "relative",
-			top: 10,
-			color: "white",
-			fontWeight: "600",
-		},
-		"& svg": {
-			position: "relative",
-			paddingLeft: "0.5rem",
-			top: 12,
+	// nav: {
+	// 	zIndex: 20,
+	// 	position: "relative",
+	// 	top: 0,
+	// 	display: "flex",
+	// 	width: "100%",
+	// 	justifyContent: "space-between",
+	// 	color: "white",
+	// 	alignItems: "center",
+	// 	"& a": {
+	// 		postion: "relative",
+	// 		top: 10,
+	// 		color: "white",
+	// 		fontWeight: "600",
+	// 	},
+	// 	"& svg": {
+	// 		position: "relative",
+	// 		paddingLeft: "0.5rem",
+	// 		top: 12,
 
-			fill: "white",
-			height: "3rem",
-			margin: "none",
-		},
-	},
+	// 		fill: "white",
+	// 		height: "3rem",
+	// 		margin: "none",
+	// 	},
+	// },
 	palettes: {
 		postion: "absolute",
-		// zIndex: 20,
+		zIndex: 1,
 		marginTop: "90vh",
 		height: "100%",
 		boxSizing: "border-box",
@@ -70,7 +68,7 @@ const styles = {
 		},
 	},
 	titlePageHeader: {
-		zIndex: 0,
+		zIndex: 1,
 		position: "absolute",
 		top: 0,
 		left: 0,
@@ -79,6 +77,7 @@ const styles = {
 		overflow: "hidden",
 	},
 	Carousel2: {
+		zIndex: 1,
 		position: "absolute",
 		left: 0,
 		height: "55vh",
@@ -86,6 +85,8 @@ const styles = {
 		cursor: "pointer",
 	},
 	yourpalletes: {
+		position: "relative",
+		zIndex: 1,
 		height: "100%",
 		boxSizing: "border-box",
 		display: "flex",
@@ -95,6 +96,7 @@ const styles = {
 		paddingBottom: 200,
 	},
 	footer: {
+		zIndex: 1,
 		position: "absolute",
 		display: "flex",
 		left: "0",
@@ -287,7 +289,7 @@ class PaletteList extends Component {
 										textAlign: "center",
 									}}
 								>
-									<Link style={{ color: "white" }} to="/palette/new">
+									<Link style={{ color: "black" }} to="/palette/new">
 										<h1>Click here to add your favourite movies!</h1>
 									</Link>
 								</div>
