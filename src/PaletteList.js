@@ -16,6 +16,7 @@ const styles = {
 		display: "flex",
 		alignItems: "flex-start",
 		justifyContent: "center",
+		fontFamily: "Roboto,Helvetica, Arial, sans-serif",
 	},
 	container: {
 		width: "100%",

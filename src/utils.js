@@ -1,6 +1,5 @@
 import React from "react";
 import ColorBox from "./ColorBox";
-import chroma from "chroma-js";
 
 export const SWATCHES_STYLES = {
 	display: "flex",

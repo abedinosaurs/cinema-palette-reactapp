@@ -1,9 +1,7 @@
 import React from "react";
-import chroma from "chroma-js";
 import { ColorExtractor } from "./react-color-extractor";
 import { withStyles } from "@material-ui/styles";
 import { Swatches, renderSwatches } from "./utils";
-import { generatePalette } from "./ColorHelpers";
 
 const styles = {
 	container: {
@@ -18,7 +16,7 @@ const styles = {
 		width: "100%",
 	},
 	image: {
-		height: "80%",
+		// height: "80%",
 		width: "70%",
 		marginBottom: 4,
 	},

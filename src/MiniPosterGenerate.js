@@ -29,7 +29,9 @@ const styles = {
 			transform: "translate(-50%, -50%)",
 			fontFamily: "Notable, sans-serif",
 			textAlign: "center",
+			wordWrap: "anywhere",
 			textShadow: "-3px 3px 3px #000000",
+			width: "30%",
 		},
 	},
 	swatchContainer: {

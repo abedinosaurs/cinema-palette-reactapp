@@ -17,9 +17,10 @@ const styles = {
 			zIndex: -1,
 			position: "relative",
 			right: 0,
+			top: 0,
 			paddingTop: "",
 			width: "75%",
-			height: "",
+			height: "90%",
 		},
 		"& h1": {
 			position: "absolute",
@@ -39,7 +40,7 @@ const styles = {
 		border: "5px solid white",
 		backgroundColor: "white",
 		position: "absolute",
-		top: "calc(100% - 170px)",
+		top: "calc(100% - 167px)",
 		display: "flex",
 		justifyContent: "space-between",
 		width: "100%",
@@ -68,7 +69,7 @@ const styles = {
 	cinemaPalette: {
 		position: "absolute",
 		color: "white",
-		top: 300,
+		top: 310,
 		left: 20,
 		zIndex: 20,
 		textShadow: "-3px 3px 3px #000000",
@@ -167,7 +168,7 @@ class FrontPageCaosuel extends React.Component {
 				<div className={this.props.classes.cinemaPalette}>
 					<h1>Welcome to CinemaPalettes {filmReel}</h1>
 					<h4>
-						Easily explore the color palettes from your favourite films. <br />
+						Easily explore the color palettes from your favourite films.
 						<span>
 							<Link to="/palette/new">Click here </Link>
 						</span>
