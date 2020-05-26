@@ -3,8 +3,12 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
+import Carousel from "react-material-ui-carousel";
+import axios from "axios";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 // import styles from "./styles/PaletteStyles";
-import { ColorExtractor } from "react-color-extractor";
+import ColorExtractorFull from "./ColorExtractorForMain";
 import { generatePalette } from "./ColorHelpers";
 
 const styles = {
@@ -70,6 +74,10 @@ const styles = {
 		width: "calc(98%/6)",
 		justifyContent: "center",
 	},
+	carousel: {
+		display: "flex",
+		justifyContent: "center",
+	},
 };
 
 class Palette extends Component {
@@ -80,11 +88,18 @@ class Palette extends Component {
 			level: 500,
 			format: "hex",
 			colors: [],
+			moreImages: [],
 		};
 		this.changeLevel = this.changeLevel.bind(this);
 		this.changeFormat = this.changeFormat.bind(this);
 		this.getColors = this.getColors.bind(this);
 		this.renderSwatches = this.renderSwatches.bind(this);
+		this.moreScreenShots = this.moreScreenShots.bind(this);
+	}
+
+	componentDidMount() {
+		this.moreScreenShots();
+		console.log(this.props.palette);
 	}
 
 	changeLevel(level) {
@@ -101,15 +116,36 @@ class Palette extends Component {
 	}
 	renderSwatches() {
 		const { colors } = this.state;
-		return colors.map((color, id) => {
+		return colors.map((color) => {
 			return (
-				<div
-					key={id}
-					style={{ backgroundColor: color }}
-					className={this.props.classes.paletteSwatches}
-				/>
+				<div>
+					<CopyToClipboard>
+						<ColorBox
+							// key={id}
+							style={{ backgroundColor: color }}
+							name={color.name}
+							className={this.props.classes.paletteSwatches}
+						/>
+					</CopyToClipboard>
+				</div>
 			);
 		});
+	}
+
+	async moreScreenShots() {
+		let screenShots = await axios.get(
+			`https://api.themoviedb.org/3/movie/${this.props.palette.movieID}/images?api_key=d5c94178df3eba5299cbb75cffff17b3`
+		);
+		let info = screenShots.data;
+
+		this.setState({
+			moreImages: [...info.backdrops],
+			morePosters: [...info.posters],
+		});
+	}
+
+	setColor(color) {
+		return `backgroundColor:${color}`;
 	}
 
 	render() {
@@ -131,23 +167,26 @@ class Palette extends Component {
 		return (
 			<div className={classes.Palette}>
 				<Navbar
-					// level={level}
+					title={this.props.palette.title}
 					changeLevel={this.changeLevel}
 					handleChange={this.changeFormat}
+					year={this.props.palette.release}
 					showSlider
 				/>
-				<div className={classes.Colors}>
-					<ColorExtractor getColors={this.getColors} maxColors={256}>
-						<img
-							src={`https://image.tmdb.org/t/p/original${this.props.palette.backdrop}`}
-							alt={`from the movie ${this.props.title}`}
+				<div className={classes.carousel}></div>
+				<Carousel
+					autoPlay={false}
+					animation="fade"
+					indicators={false}
+					navButtonsAlwaysVisible={true}
+				>
+					{this.state.moreImages.map((item) => (
+						<ColorExtractorFull
+							IMAGE={`https://image.tmdb.org/t/p/original${item.file_path}`}
+							title={this.state.title}
 						/>
-					</ColorExtractor>
-					<div className={this.props.classes.swatchContainer}>
-						{this.renderSwatches()}
-					</div>
-				</div>
-				{/* <PaletteFooter paletteName={paletteName} /> */}
+					))}
+				</Carousel>
 			</div>
 		);
 	}

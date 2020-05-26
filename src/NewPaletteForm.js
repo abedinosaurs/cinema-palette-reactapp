@@ -122,7 +122,7 @@ class NewPaletteForm extends Component {
 			backdrop: this.state.backdrop,
 			moreImages: this.state.moreImages,
 			morePosters: this.state.morePosters,
-			id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+			id: newPaletteName.toLowerCase().replace(/[^\w\s]/gi, ""),
 		};
 		this.props.savePalette(newPalette);
 		this.props.history.push("/");
@@ -164,7 +164,11 @@ class NewPaletteForm extends Component {
 			genre: movie.genre_ids,
 			release: movie.release_date,
 			backdrop: movie.backdrop_path,
+			isLoading: true,
 		});
+		setTimeout(() => {
+			this.setState({ isLoading: false });
+		}, 1200);
 	};
 
 	render() {

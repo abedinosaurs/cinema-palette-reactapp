@@ -1,7 +1,7 @@
 import chroma from "chroma-js";
 export default {
 	ColorBox: {
-		width: "20%",
+		width: "calc(98%/6)",
 		// height: (props) => (props.showingFullPalette ? "25%" : "50%"),
 		height: 100,
 		margin: "0 auto",

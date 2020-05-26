@@ -17,16 +17,8 @@ class MiniPalette extends Component {
 
 		this.state = {
 			colors: [],
-			isHovered: false,
 		};
 		this.setMiniColors = this.setMiniColors.bind(this);
-		this.handleHover = this.handleHover.bind(this);
-	}
-
-	handleHover() {
-		this.setState((prevState) => ({
-			isHovered: !prevState.isHovered,
-		}));
 	}
 
 	setMiniColors(colors) {
@@ -35,15 +27,11 @@ class MiniPalette extends Component {
 
 	render() {
 		return (
-			<div
-				onMouseEnter={this.handleHover}
-				onMouseLeave={this.handleHover}
-				className={this.props.root}
-				onClick={this.props.handleClick}
-			>
+			<div className={this.props.root} onClick={this.props.handleClick}>
 				<MiniColorGenerate
 					className={this.props.generator}
 					image={this.props.image}
+					title={this.props.title}
 					setMiniColors={this.setMiniColors}
 				/>
 			</div>

@@ -46,9 +46,11 @@ class ColorGenerate extends React.Component {
 	renderSwatches() {
 		const { colors } = this.state;
 		return colors.map((color, id) => {
+			console.log(color);
 			return (
 				<div
 					key={id}
+					name={color.name}
 					style={{ backgroundColor: color }}
 					className={this.props.classes.paletteSwatches}
 				/>

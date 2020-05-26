@@ -29,19 +29,19 @@ import chroma from "chroma-js";
 
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-function generatePalette(starterPalette) {
-	let newPalette = {
-		paletteName: starterPalette.title,
-		id: starterPalette.id,
-		colors: [],
-	};
-	for (let level of levels) {
-		newPalette.colors[level] = [];
-	}
-	for (let color of starterPalette.colors) {
+function generatePalette(colors) {
+	// let newPalette = {
+	// 	paletteName: starterPalette.title,
+	// 	id: starterPalette.id,
+	// 	colors: [],
+	// };
+	// for (let level of levels) {
+	// 	newPalette.colors[level] = [];
+	// }
+	for (let color of colors) {
 		let scale = getScale(color.color, 10).reverse();
 		for (let i in scale) {
-			newPalette.colors[levels[i]].push({
+			colors[levels[i]].push({
 				name: `${[i]} ${levels[i]}`,
 				// id: color.name.toLowerCase().replace(/ /g, "-"),
 				hex: scale[i],
@@ -53,7 +53,7 @@ function generatePalette(starterPalette) {
 			});
 		}
 	}
-	console.log(newPalette);
+	console.log(colors);
 }
 function getRange(hexColor) {
 	const end = "#fff";

@@ -5,23 +5,32 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = {
 	root: {},
 	movieImage: {
+		background: "none",
 		width: "450px",
-		height: "",
+		height: "90%",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
 		flexWrap: "wrap",
+		boxShadow: "-10px 10px 7px 2px rgba(0,0,0,0.7)",
+		marginBottom: 15,
 		"& img": {
 			width: "100%",
 			position: "relative",
 			zIndex: -1,
 			display: "block",
+			borderRadius: "10px 10px 0px 0px",
 		},
-	},
-	hoveredImage: {
-		position: "absolute",
-		backgroundColor: "black",
-		zIndex: 10,
+		"& h2": {
+			color: "white",
+			position: "absolute",
+			top: "35%",
+			left: "50%",
+			transform: "translate(-50%, -50%)",
+			fontFamily: "Notable, sans-serif",
+			textAlign: "center",
+			textShadow: "-3px 3px 3px #000000",
+		},
 	},
 	swatchContainer: {
 		display: "flex",
@@ -68,7 +77,7 @@ class ColorGenerate extends React.Component {
 		return (
 			<div className={this.props.classes.root}>
 				<div className={this.props.classes.movieImage}>
-					>
+					<h2>{this.props.title}</h2>
 					<ColorExtractor getColors={this.getColors} maxColors={256}>
 						<img
 							src={`https://image.tmdb.org/t/p/w780${this.props.image}`}
