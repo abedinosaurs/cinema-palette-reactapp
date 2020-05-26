@@ -7,7 +7,7 @@ import FrontPageCarosuel from "./FrontPageCarosuel";
 import Carousel2 from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import Button from "@material-ui/core/Button";
-
+import Footer from "./Footer";
 const styles = {
 	root: {
 		backgroundColor: "#fffff2",
@@ -18,7 +18,7 @@ const styles = {
 		justifyContent: "center",
 	},
 	container: {
-		width: "90%",
+		width: "100%",
 		display: "flex",
 		alignItems: "space-between",
 		flexDirection: "column",
@@ -91,40 +91,11 @@ const styles = {
 		boxSizing: "border-box",
 		display: "flex",
 		flexWrap: "wrap",
-		width: "90%",
+		width: "100%",
 		justifyContent: "flex-start",
 		paddingBottom: 200,
 	},
-	footer: {
-		zIndex: 1,
-		position: "absolute",
-		display: "flex",
-		left: "0",
-		bottom: 0,
-		width: "100%",
-		backgroundColor: "#F8F9FA",
-		color: " black",
-		clear: "both",
-		"& p": {
-			position: "absolute",
-			right: 10,
-		},
-		"& h3": {
-			margin: 0,
-			paddingLeft: "3rem",
-			paddingBottom: 10,
-			fontFamily: "Oswald, sans-serif",
-			letterSpacing: "2px",
 
-			"& svg": {
-				position: "relative",
-				paddingLeft: "0.5rem",
-				top: 8,
-				height: "2rem",
-				margin: "none",
-			},
-		},
-	},
 	yourText: {
 		display: "flex",
 		justifyContent: "space-between",
@@ -296,22 +267,9 @@ class PaletteList extends Component {
 							)}
 						</Carousel2>
 					</div>
+
+					<Footer className={classes.footer} />
 				</div>
-				<footer className={classes.footer}>
-					<h3>
-						CinemaPalettes
-						{filmReel}
-					</h3>
-					<p>
-						Designed and bulit by:{" "}
-						<a
-							style={{ color: "black" }}
-							href="mailto: jason.a.mckenzie@gmail.com"
-						>
-							Jason McKenzie
-						</a>
-					</p>
-				</footer>
 			</div>
 		);
 	}
