@@ -66,15 +66,17 @@ class Palette extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, palette } = this.props;
+		const { title } = this.state;
+		const moreImages = this.state.moreImages.slice(0, 4);
 
 		return (
 			<div className={classes.Palette}>
 				<Navbar
-					title={this.props.palette.title}
+					title={palette.title}
 					changeLevel={this.changeLevel}
 					handleChange={this.changeFormat}
-					year={this.props.palette.release}
+					year={palette.release}
 					showSlider
 				/>
 				<div className={classes.carousel}></div>
@@ -84,10 +86,10 @@ class Palette extends Component {
 					indicators={false}
 					navButtonsAlwaysVisible={true}
 				>
-					{this.state.moreImages.map((item) => (
+					{moreImages.map((item) => (
 						<ColorExtractorFull
 							IMAGE={`https://image.tmdb.org/t/p/original${item.file_path}`}
-							title={this.state.title}
+							title={title}
 						/>
 					))}
 				</Carousel>

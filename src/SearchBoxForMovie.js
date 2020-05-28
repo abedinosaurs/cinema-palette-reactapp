@@ -26,9 +26,10 @@ class SearchBoxForMovie extends Component {
 	}
 
 	render() {
+		const { movieOptions, movieSearch } = this.state;
 		return (
 			<Autocomplete
-				options={this.state.movieOptions}
+				options={movieOptions}
 				getOptionLabel={(option) => option.title}
 				id="controlled-demo"
 				onChange={(event, value) => this.props.handleChange(value)}
@@ -37,7 +38,7 @@ class SearchBoxForMovie extends Component {
 						{...params}
 						label="Movie Search"
 						margin="normal"
-						value={this.state.movieSearch ? this.state.movieSearch : ""}
+						value={movieSearch ? movieSearch : ""}
 						onChange={this.handleValue}
 					/>
 				)}

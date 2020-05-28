@@ -37,18 +37,17 @@ class ColorGenerate extends React.Component {
 	}
 
 	render() {
+		const { classes, image, title } = this.props;
 		return (
-			<div className={this.props.classes.root}>
-				<div className={this.props.classes.movieImage}>
+			<div className={classes.root}>
+				<div className={classes.movieImage}>
 					<ColorExtractor getColors={this.getColors} maxColors={256}>
 						<img
-							src={`https://image.tmdb.org/t/p/original${this.props.image}`}
-							alt={`from the movie ${this.props.title}`}
+							src={`https://image.tmdb.org/t/p/original${image}`}
+							alt={`from the movie ${title}`}
 						/>
 					</ColorExtractor>
-					<div className={this.props.classes.swatchContainer}>
-						{this.renderSwatches()}
-					</div>
+					<div className={classes.swatchContainer}>{this.renderSwatches()}</div>
 				</div>
 			</div>
 		);

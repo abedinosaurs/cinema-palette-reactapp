@@ -96,8 +96,8 @@ class NewPaletteForm extends Component {
 		let info = screenShots.data;
 		if (info.backdrops.length > 1) {
 			this.setState({
-				moreImages: [...info.backdrops],
-				morePosters: [...info.posters],
+				moreImages: [...info.backdrops.slice(0, 4)],
+				morePosters: [...info.posters.slice(0, 4)],
 			});
 		} else {
 			this.randomMovie();

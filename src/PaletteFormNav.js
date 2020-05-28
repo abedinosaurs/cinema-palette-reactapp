@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { ValidatorForm } from "react-material-ui-form-validator";
 import SearchBoxForMovie from "./SearchBoxForMovie";
-import styles from "./styles/NewPaletteFormStyles";
+import styles from "./styles/PaletteFormNavStyles";
 
 class PaletteFormNav extends Component {
 	constructor(props) {
@@ -83,4 +83,4 @@ class PaletteFormNav extends Component {
 		);
 	}
 }
-export default withStyles(styles, { withTheme: true })(PaletteFormNav);
+export default withStyles(styles)(PaletteFormNav);
