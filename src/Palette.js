@@ -71,7 +71,7 @@ class Palette extends Component {
 		const moreImages = this.state.moreImages.slice(0, 4);
 
 		return (
-			<div className={classes.Palette}>
+			<div className={classes.root}>
 				<Navbar
 					title={palette.title}
 					changeLevel={this.changeLevel}
@@ -79,20 +79,21 @@ class Palette extends Component {
 					year={palette.release}
 					showSlider
 				/>
-				<div className={classes.carousel}></div>
-				<Carousel
-					autoPlay={false}
-					animation="fade"
-					indicators={false}
-					navButtonsAlwaysVisible={true}
-				>
-					{moreImages.map((item) => (
-						<ColorExtractorFull
-							IMAGE={`https://image.tmdb.org/t/p/original${item.file_path}`}
-							title={title}
-						/>
-					))}
-				</Carousel>
+				<div className={classes.carousel}>
+					<Carousel
+						autoPlay={false}
+						animation="fade"
+						indicators={false}
+						navButtonsAlwaysVisible={true}
+					>
+						{moreImages.map((item) => (
+							<ColorExtractorFull
+								IMAGE={`https://image.tmdb.org/t/p/original${item.file_path}`}
+								title={title}
+							/>
+						))}
+					</Carousel>
+				</div>
 			</div>
 		);
 	}

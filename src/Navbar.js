@@ -11,7 +11,12 @@ class Navbar extends Component {
 		return (
 			<nav className={classes.Navbar}>
 				<div className={classes.logo}>
-					<Link to="/">CinemaPalettes {filmReel}</Link>
+					<Link to="/">
+						<span className={classes.logoTitle}>CinemaPalettes {filmReel}</span>
+						<span className={classes.logoArrow}>
+							<i class="fas fa-arrow-left"></i>
+						</span>
+					</Link>
 				</div>
 				<h1>
 					{this.props.title} {` (${this.props.year.substring(0, 4)})`}

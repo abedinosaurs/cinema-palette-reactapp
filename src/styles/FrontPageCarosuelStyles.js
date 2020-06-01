@@ -34,7 +34,7 @@ export default {
 		border: "5px solid white",
 		backgroundColor: "white",
 		position: "absolute",
-		bottom: "30px",
+		bottom: "27px",
 		display: "flex",
 		justifyContent: "space-between",
 		width: "100%",

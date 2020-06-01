@@ -1,5 +1,8 @@
 export default {
 	Navbar: {
+		position: "absolute",
+		zIndex: 20,
+		width: "100vw",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
@@ -8,6 +11,12 @@ export default {
 		fontFamily: "Roboto,Helvetica, Arial, sans-serif",
 		"& h1": {
 			fontWeight: 400,
+			"@media screen and (max-width: 600px)": {
+				maxWidth: 400,
+				textOverflow: "ellipsis",
+				marginTop: 22,
+				paddingLeft: 25,
+			},
 		},
 	},
 	logo: {
@@ -28,6 +37,17 @@ export default {
 			paddingLeft: ".2rem",
 			height: "2.3rem",
 			marginBottom: 2,
+		},
+	},
+	logoTitle: {
+		"@media (max-width: 800px)": {
+			display: "none",
+		},
+	},
+	logoArrow: {
+		display: "none",
+		"@media (max-width: 800px)": {
+			display: "inline",
 		},
 	},
 };

@@ -1,11 +1,8 @@
 import React from "react";
 import ColorBox from "./ColorBox";
+import ReactResizeDetector from "react-resize-detector";
 
-export const SWATCHES_STYLES = {
-	display: "flex",
-	justifyContent: "around",
-	width: "70%",
-};
+export const SWATCHES_STYLES = {};
 
 export const renderSwatches = (type, colors) => {
 	return colors.map((color, id) => {
@@ -26,7 +23,28 @@ export const renderSwatches = (type, colors) => {
 };
 
 export const Swatches = (props) => (
-	<div style={SWATCHES_STYLES}>{props.renderSwatches("rgb", props.colors)}</div>
+	<ReactResizeDetector
+		handleWidth
+		render={({ width }) => (
+			<div
+				style={
+					width >= 600
+						? {
+								display: "flex",
+								justifyContent: "around",
+								width: "70%",
+								flexDirection: "row",
+						  }
+						: {
+								flexDirection: "column",
+								width: "100%",
+						  }
+				}
+			>
+				{props.renderSwatches("rgb", props.colors)}
+			</div>
+		)}
+	/>
 );
 
 export const filmReel = (
