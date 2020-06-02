@@ -45,7 +45,7 @@ class PaletteList extends Component {
 				<div className={classes.container}>
 					<div className={classes.titlePageHeader}>
 						<Carousel1
-							autoPlay={false}
+							autoPlay={true}
 							interval={3000}
 							animation="fade"
 							timeout={600}
@@ -64,7 +64,7 @@ class PaletteList extends Component {
 						<h3>Explore Some of Our Favourite Palettes : </h3>
 						<Carousel2
 							className={classes.Carousel2}
-							centered
+							// centered
 							stopAutoPlayOnHover
 							infinite
 							slidesPerPage={3}
@@ -95,7 +95,10 @@ class PaletteList extends Component {
 							<h3>Your Saved Palettes:</h3>
 							<Link to="/palette/new">
 								<Button size="small" variant="contained">
-									Add New Movie to Your List
+									<span className={classes.buttonFull}>
+										Add New Movie to Your List
+									</span>
+									<span className={classes.buttonSmall}>+ Movie</span>
 								</Button>{" "}
 							</Link>
 						</div>

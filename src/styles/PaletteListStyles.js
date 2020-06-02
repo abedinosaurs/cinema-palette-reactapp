@@ -98,4 +98,15 @@ export default {
 			margin: 0,
 		},
 	},
+	buttonFull: {
+		"@media only screen and (max-width: 600px)": {
+			display: "none",
+		},
+	},
+	buttonSmall: {
+		display: "none",
+		"@media only screen and (max-width: 600px)": {
+			display: "inline-block",
+		},
+	},
 };

@@ -70,7 +70,7 @@ export default {
 		zIndex: -1,
 		left: 150,
 		top: 0,
-		height: "80%",
+		height: "84%",
 		"@media screen and (max-width: 600px)": {
 			display: "none",
 		},
