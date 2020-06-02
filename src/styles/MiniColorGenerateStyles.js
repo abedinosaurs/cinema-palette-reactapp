@@ -23,10 +23,11 @@ export default {
 			borderRadius: "10px 10px 0px 0px",
 		},
 		"& h2": {
+			maxWidth: "inherit",
 			color: "white",
 			position: "absolute",
 			top: "35%",
-			left: "47%",
+			left: "50%",
 			transform: "translate(-50%, -50%)",
 			fontFamily: "Notable, sans-serif",
 			textAlign: "center",

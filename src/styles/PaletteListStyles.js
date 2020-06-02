@@ -80,6 +80,7 @@ export default {
 			textDecoration: "underline",
 		},
 		"& a": {
+			textDecorationColor: "black",
 			position: "relative",
 			zIndex: "100",
 			padding: 0,
