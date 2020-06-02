@@ -7,6 +7,12 @@ export default {
 		justifyContent: "space-between",
 		alignItems: "center",
 		height: "64px",
+		fontFamily: "Roboto,Helvetica, Arial, sans-serif",
+
+		"@media only screen and (max-width: 600px)": {
+			width: "100vw",
+			height: "35px",
+		},
 	},
 
 	navControls: {
@@ -16,6 +22,21 @@ export default {
 		alignItems: "center",
 		"& a": {
 			textDecoration: "none",
+		},
+		"@media only screen and (max-width: 600px)": {
+			backgroundColor: "#F4F4F4",
+			zIndex: 20,
+			width: "100vw",
+			height: "35px",
+			position: "absolute",
+			top: 35,
+		},
+		"& .MuiButton-root": {
+			"@media only screen and (max-width: 600px)": {
+				lineHeight: "0.70",
+				fontWeight: 400,
+				textTransform: "none",
+			},
 		},
 	},
 	button: {
@@ -31,5 +52,8 @@ export default {
 	titleText: {
 		alignSelf: "center",
 		marginLeft: "1rem",
+		"@media only screen and (max-width: 600px)": {
+			fontSize: "large",
+		},
 	},
 };

@@ -38,6 +38,8 @@ export const Swatches = (props) => (
 						: {
 								flexDirection: "column",
 								width: "100%",
+								justifyContent: "flex-end",
+								marginTop: "40vh",
 						  }
 				}
 			>

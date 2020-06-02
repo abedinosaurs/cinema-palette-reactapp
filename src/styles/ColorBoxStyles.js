@@ -1,6 +1,5 @@
 export default {
 	ColorBox: {
-		zIndex: 20,
 		width: "calc(98%/6)",
 		height: 100,
 		margin: "0 auto",
@@ -15,7 +14,7 @@ export default {
 		},
 		"@media (max-width: 600px)": {
 			width: "100%",
-			height: "calc(96vh/7)",
+			height: "calc(100vh/10)",
 		},
 	},
 	copyButton: {

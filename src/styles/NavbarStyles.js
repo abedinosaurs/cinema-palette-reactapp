@@ -40,7 +40,7 @@ export default {
 		},
 	},
 	logoTitle: {
-		"@media (max-width: 800px)": {
+		"@media (max-width: 600px)": {
 			display: "none",
 		},
 	},
