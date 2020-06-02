@@ -5,7 +5,7 @@ export default {
 		display: "flex",
 		left: 0,
 		bottom: 0,
-		width: "100vw",
+		width: "100%",
 		backgroundColor: "#F8F9FA",
 		color: " black",
 		clear: "both",

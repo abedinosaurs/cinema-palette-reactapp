@@ -50,11 +50,22 @@ export default {
 	Carousel2: {
 		zIndex: 1,
 		position: "absolute",
+		// left: 0,
+		height: "55vh",
+		// width: "100%",
+		cursor: "pointer",
+		width: "90%",
+	},
+	Carousel3: {
+		zIndex: 1,
+		position: "absolute",
 		left: 0,
 		height: "55vh",
 		width: "100%",
 		cursor: "pointer",
+		// width: "90%",
 	},
+
 	yourpalletes: {
 		position: "relative",
 		zIndex: 1,

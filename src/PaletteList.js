@@ -91,61 +91,60 @@ class PaletteList extends Component {
 								/>
 							))}
 						</Carousel2>
+						<div className={classes.yourText}>
+							<h3>Your Saved Palettes:</h3>
+							<Link to="/palette/new">
+								<Button size="small" variant="contained">
+									Add New Movie to Your List
+								</Button>{" "}
+							</Link>
+						</div>
+						<div className={classes.yourpalletes}>
+							<Carousel2
+								className={classes.Carousel3}
+								centered
+								stopAutoPlayOnHover
+								infinite
+								slidesPerPage={newPalettes.length >= 3 ? 3 : 1}
+								addArrowClickHandler
+								arrowRight={<i class="fas fa-forward fa-2x"></i>}
+								arrowLeft={<i class="fas fa-backward fa-2x"></i>}
+								breakpoints={{
+									640: {
+										slidesPerPage: 1,
+										arrows: false,
+									},
+									900: {
+										slidesPerPage: 2,
+										arrows: false,
+									},
+								}}
+							>
+								{newPalettes.length >= 1 ? (
+									newPalettes.map((p) => (
+										<MiniPalette
+											image={p.backdrop}
+											title={p.title}
+											handleClick={() => this.goToPalette(p.id)}
+											key={p.id}
+										/>
+									))
+								) : (
+									<div
+										style={{
+											height: "100%",
+											width: "100%",
+											textAlign: "center",
+										}}
+									>
+										<Link style={{ color: "black" }} to="/palette/new">
+											<h1>Click here to add your first movie!</h1>
+										</Link>
+									</div>
+								)}
+							</Carousel2>
+						</div>
 					</div>
-					<div className={classes.yourText}>
-						<h3>Your Saved Palettes:</h3>
-						<Link to="/palette/new">
-							<Button size="small" variant="contained">
-								Add New Movie to Your List
-							</Button>{" "}
-						</Link>
-					</div>
-					<div className={classes.yourpalletes}>
-						<Carousel2
-							className={classes.Carousel2}
-							centered
-							stopAutoPlayOnHover
-							infinite
-							slidesPerPage={newPalettes.length >= 3 ? 3 : 1}
-							addArrowClickHandler
-							arrowRight={<i class="fas fa-forward fa-2x"></i>}
-							arrowLeft={<i class="fas fa-backward fa-2x"></i>}
-							breakpoints={{
-								640: {
-									slidesPerPage: 1,
-									arrows: false,
-								},
-								900: {
-									slidesPerPage: 2,
-									arrows: false,
-								},
-							}}
-						>
-							{newPalettes.length >= 1 ? (
-								newPalettes.map((p) => (
-									<MiniPalette
-										image={p.backdrop}
-										title={p.title}
-										handleClick={() => this.goToPalette(p.id)}
-										key={p.id}
-									/>
-								))
-							) : (
-								<div
-									style={{
-										height: "100%",
-										width: "100%",
-										textAlign: "center",
-									}}
-								>
-									<Link style={{ color: "black" }} to="/palette/new">
-										<h1>Click here to add your first movie!</h1>
-									</Link>
-								</div>
-							)}
-						</Carousel2>
-					</div>
-
 					<Footer className={classes.footer} />
 				</div>
 			</div>
