@@ -45,7 +45,7 @@ class PaletteList extends Component {
 				<div className={classes.container}>
 					<div className={classes.titlePageHeader}>
 						<Carousel1
-							autoPlay={true}
+							autoPlay={false}
 							interval={3000}
 							animation="fade"
 							timeout={600}
@@ -72,7 +72,7 @@ class PaletteList extends Component {
 							arrowRight={<i class="fas fa-forward fa-2x"></i>}
 							arrowLeft={<i class="fas fa-backward fa-2x"></i>}
 							breakpoints={{
-								640: {
+								600: {
 									slidesPerPage: 1,
 									arrows: false,
 								},
@@ -139,7 +139,7 @@ class PaletteList extends Component {
 									}}
 								>
 									<Link style={{ color: "black" }} to="/palette/new">
-										<h1>Click here to add your favourite movies!</h1>
+										<h1>Click here to add your first movie!</h1>
 									</Link>
 								</div>
 							)}

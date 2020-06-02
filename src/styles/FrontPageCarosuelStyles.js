@@ -16,6 +16,9 @@ export default {
 			paddingTop: "",
 			width: "75%",
 			height: "90%",
+			"@media screen and (max-width: 600px)": {
+				width: "100%",
+			},
 		},
 		"& h1": {
 			position: "absolute",
@@ -27,6 +30,9 @@ export default {
 			fontFamily: "Notable, sans-serif",
 			letterSpacing: "4px",
 			cursor: "pointer",
+			"@media screen and (max-width: 600px)": {
+				display: "none",
+			},
 		},
 	},
 	swatchContainer: {
@@ -39,11 +45,17 @@ export default {
 		justifyContent: "space-between",
 		width: "100%",
 		height: 100,
+		"@media screen and (max-width: 600px)": {
+			bottom: "0px",
+			border: "1px solid white",
+			height: "10%",
+		},
 	},
 	paletteSwatches: {
 		height: "100%",
 		width: "calc(98%/6)",
 		justifyContent: "center",
+		"@media screen and (max-width: 600px)": {},
 	},
 	overlay: {
 		position: "absolute",
@@ -59,6 +71,9 @@ export default {
 		left: 150,
 		top: 0,
 		height: "80%",
+		"@media screen and (max-width: 600px)": {
+			display: "none",
+		},
 	},
 	cinemaPalette: {
 		position: "absolute",
@@ -68,16 +83,29 @@ export default {
 		zIndex: 20,
 		textShadow: "-3px 3px 3px #000000",
 		width: "30%",
+		"@media screen and (max-width: 600px)": {
+			top: 30,
+			width: "100%",
+		},
 
 		"& h1": {
 			marginBottom: 0,
 			fontFamily: "Oswald, sans-serif",
 			letterSpacing: "2px",
+			"@media screen and (max-width: 600px)": {
+				fontSize: "larger",
+				textShadow: "-2px 2px 2px #000000",
+				letterSpacing: "1px",
+			},
 		},
 		"& h4": {
 			marginTop: ".33rem",
 			marginLeft: ".25rem",
 			width: "90%",
+			"@media screen and (max-width: 600px)": {
+				marginTop: ".05rem",
+				fontSize: "small",
+			},
 		},
 		"& svg": {
 			position: "relative",
@@ -86,6 +114,11 @@ export default {
 			fill: "white",
 			height: "3rem",
 			margin: "none",
+			"@media screen and (max-width: 600px)": {
+				top: 4,
+				paddingLeft: 0,
+				height: "1.2rem",
+			},
 		},
 		"& a": {
 			color: "white",

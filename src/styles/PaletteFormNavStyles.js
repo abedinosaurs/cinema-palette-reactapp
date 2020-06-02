@@ -23,7 +23,7 @@ export default {
 		"& a": {
 			textDecoration: "none",
 		},
-		"@media only screen and (max-width: 600px)": {
+		"@media only screen and (max-width: 1200px)": {
 			backgroundColor: "#F4F4F4",
 			zIndex: 20,
 			width: "100vw",

@@ -15,6 +15,7 @@ export default {
 		flexWrap: "wrap",
 	},
 	palettes: {
+		alignSelf: "center",
 		postion: "absolute",
 		zIndex: 1,
 		marginTop: "90vh",
@@ -24,11 +25,17 @@ export default {
 		flexWrap: "wrap",
 		width: "90%",
 		justifyContent: "flex-start",
+		"@media only screen and (max-width: 600px)": {
+			marginTop: "27vh",
+		},
 		"& h3": {
 			marginBottom: 0,
 			color: "black",
 			alignItems: "flex-start",
 			textDecoration: "underline",
+			"@media only screen and (max-width: 600px)": {
+				fontSize: "inherit",
+			},
 		},
 	},
 	titlePageHeader: {
@@ -65,7 +72,9 @@ export default {
 		justifyContent: "space-between",
 		alignItems: "center",
 		width: "100%",
-
+		"@media only screen and (max-width: 600px)": {
+			fontSize: "small",
+		},
 		"& h3": {
 			color: "black",
 			textDecoration: "underline",

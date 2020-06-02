@@ -10,6 +10,11 @@ export default {
 		flexWrap: "wrap",
 		boxShadow: "-10px 10px 7px 2px rgba(0,0,0,0.7)",
 		marginBottom: 15,
+		"@media only screen and (max-width: 600px)": {
+			width: "inherit",
+			boxShadow: "none",
+			marginBottom: 0,
+		},
 		"& img": {
 			width: "100%",
 			position: "relative",
@@ -21,12 +26,15 @@ export default {
 			color: "white",
 			position: "absolute",
 			top: "35%",
-			left: "50%",
+			left: "47%",
 			transform: "translate(-50%, -50%)",
 			fontFamily: "Notable, sans-serif",
 			textAlign: "center",
 			textShadow: "-3px 3px 3px #000000",
 			width: "30%",
+			"@media only screen and (max-width: 600px)": {
+				width: "90%",
+			},
 		},
 	},
 	swatchContainer: {
