@@ -2,14 +2,6 @@ import React, { Component } from "react";
 import MiniColorGenerate from "./MiniColorGenerate";
 import { withStyles } from "@material-ui/styles";
 
-const styles = {
-	// root: {
-	// 	width: "30%",
-	// },
-	// title: {},
-	// generator: {},
-};
-
 class MiniPalette extends Component {
 	constructor(props) {
 		super(props);

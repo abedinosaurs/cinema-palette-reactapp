@@ -21,15 +21,11 @@ class NewPaletteForm extends Component {
 			noInput: false,
 			title: "",
 			movieID: "",
-			original_title: "",
-			overview: "",
 			poster: "",
-			genre: [],
 			release: "",
 			backdrop: "",
 			moreImages: [],
 			morePosters: [],
-			rating: "",
 			colors: [],
 		};
 		this.handleChange = this.handleChange.bind(this);
@@ -37,35 +33,39 @@ class NewPaletteForm extends Component {
 		this.handleInput = this.handleInput.bind(this);
 		this.moreScreenShots = this.moreScreenShots.bind(this);
 	}
-
+	// ON Load choose a random movie
 	componentDidMount = () => {
 		this.randomMovie();
 	};
 
+	//chooses the random movies
 	randomMovie = async () => {
+		//chooses random page (in the range that is full of movies)
 		let randPage = Math.floor(Math.random() * 100);
+		//chooses random entry on page
 		let randIdx = Math.floor(Math.random() * 20);
+		//finds page
 		let startingMovie = await axios.get(
 			`https://api.themoviedb.org/3/discover/movie?api_key=d5c94178df3eba5299cbb75cffff17b3&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${randPage}&with_original_language=en`
 		);
+		//uses the random index on that page
 		let info = startingMovie.data.results[randIdx];
 		this.setState({
 			movieID: info.id,
 			title: info.title,
-			original_title: info.original_title,
-			overview: info.overview,
 			poster: info.poster_path,
-			genre: info.genre_ids,
 			release: info.release_date,
 			backdrop: info.backdrop_path,
 			isLoading: true,
 		});
+		//causes loading animation for 1.2 seconds to let page catch up
 		setTimeout(() => {
 			this.setState({ isLoading: false });
 		}, 1200);
+		// loads more screenshots now that we have the movie ID
 		this.moreScreenShots(this.state.movieID);
 	};
-
+	//this is for the search bar.
 	handleChange(evt) {
 		this.setState({ [evt.target.name]: evt.target.value });
 	}
@@ -75,20 +75,18 @@ class NewPaletteForm extends Component {
 			colors: [],
 			title: this.state.title,
 			movieID: this.state.movieID,
-			original_title: this.state.original_title,
-			overview: this.state.overview,
 			poster: this.state.poster,
-			genre: this.state.genre,
 			release: this.state.release,
 			backdrop: this.state.backdrop,
 			moreImages: this.state.moreImages,
 			morePosters: this.state.morePosters,
 			id: newPaletteName.toLowerCase().replace(/[^\w\s]/gi, ""),
 		};
+		//saves palette to array and then redirects to homepage
 		this.props.savePalette(newPalette);
 		this.props.history.push("/");
 	}
-
+	//now that we have the movie ID we can look up more screenshots on separate call.
 	async moreScreenShots(id) {
 		let screenShots = await axios.get(
 			`https://api.themoviedb.org/3/movie/${id}/images?api_key=d5c94178df3eba5299cbb75cffff17b3`
@@ -99,6 +97,7 @@ class NewPaletteForm extends Component {
 				moreImages: [...info.backdrops.slice(0, 4)],
 				morePosters: [...info.posters.slice(0, 4)],
 			});
+			//if the movie that the user or the random movie function chooses doesn't have screenshots it will choose a new random movie.
 		} else {
 			this.randomMovie();
 		}
@@ -114,15 +113,12 @@ class NewPaletteForm extends Component {
 			morePosters: [...info.posters],
 		});
 	}
-
+	//this is coming from the search
 	handleInput = (movie) => {
 		this.setState({
 			title: movie.title,
 			movieID: movie.id,
-			original_title: movie.original_title,
-			overview: movie.overview,
 			poster: movie.poster_path,
-			genre: movie.genre_ids,
 			release: movie.release_date,
 			backdrop: movie.backdrop_path,
 			isLoading: true,

@@ -14,7 +14,7 @@ export default {
 		},
 		"@media (max-width: 600px)": {
 			width: "100%",
-			height: "calc(100vh/10)",
+			height: "calc(85vh/10)",
 		},
 	},
 	copyButton: {

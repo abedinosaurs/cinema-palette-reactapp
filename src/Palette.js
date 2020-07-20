@@ -13,8 +13,6 @@ class Palette extends Component {
 		super(props);
 
 		this.state = {
-			level: 500,
-			format: "hex",
 			colors: [],
 			moreImages: [],
 		};
@@ -22,16 +20,18 @@ class Palette extends Component {
 		this.renderSwatches = this.renderSwatches.bind(this);
 		this.moreScreenShots = this.moreScreenShots.bind(this);
 	}
-
+	//loads the move screenshots when you load the page.
 	componentDidMount() {
 		this.moreScreenShots();
 		console.log(this.props.palette);
 	}
+
 	getColors(colors) {
 		this.setState(() => ({
 			colors: [...colors],
 		}));
 	}
+
 	renderSwatches() {
 		const { colors } = this.state;
 		return colors.map((color) => {

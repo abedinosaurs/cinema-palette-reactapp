@@ -13,9 +13,8 @@ class ColorBox extends Component {
 		};
 		this.changeCopyState = this.changeCopyState.bind(this);
 	}
-	componentDidMount() {
-		console.log(this.props.style.backgroundColor.trim());
-	}
+
+	//Change state to show the COPIED animation
 	changeCopyState() {
 		this.setState({ copied: true }, () => {
 			setTimeout(() => this.setState({ copied: false }), 1500);
